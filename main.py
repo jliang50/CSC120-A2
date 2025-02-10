@@ -1,8 +1,11 @@
+"""
 # Import a few useful containers from the typing module
 from typing import Dict, Union
-
 # Import the functions we wrote in procedural_resale_shop.py
 from procedural_resale_shop import buy, update_price, sell, print_inventory, refurbish
+"""
+
+from oo_resale_shop import ResaleShop
 
 """ This helper function takes in a bunch of information about a computer,
     and packages it up into a python dictionary to make it easier to store
@@ -26,7 +29,7 @@ def create_computer(description: str,
             'year_made': year_made,
             'price': price
     }
-
+"""
 def main():
     
     # First, let's make a computer
@@ -76,3 +79,31 @@ def main():
 
 # Calls the main() function when this file is run
 if __name__ == "__main__": main()
+
+"""
+
+
+def main():
+    shop = ResaleShop()  # Create a new resale shop instance
+    
+    # Buy a computer and add it to inventory
+    computer_id = shop.buy("Mac Pro (Late 2013)", "3.5 GHz 6-Core Intel Xeon E5", 1024, 64, "macOS Big Sur", 2013, 1500)
+    
+    print("-" * 21)
+    print("COMPUTER RESALE STORE")
+    print("-" * 21)
+    
+    shop.print_inventory()  # Print inventory after adding a computer
+    
+    # Refurbish the computer and update the OS
+    print(f"Refurbishing Item ID: {computer_id}, updating OS to MacOS Monterey")
+    shop.refurbish(computer_id, "MacOS Monterey")
+    shop.print_inventory()
+    
+    # Sell the computer
+    print(f"Selling Item ID: {computer_id}")
+    shop.sell(computer_id)
+    shop.print_inventory()
+
+if __name__ == "__main__":
+    main()  # Run the main function if the script is executed
